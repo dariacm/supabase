@@ -2788,6 +2788,7 @@ export interface components {
         | 'RESTARTING'
         | 'PAUSE_FAILED'
         | 'RESIZING'
+        | 'PROMOTING'
     }
     BranchResponse_Output: {
       /** Format: date-time */
@@ -2827,6 +2828,7 @@ export interface components {
         | 'RESTARTING'
         | 'PAUSE_FAILED'
         | 'RESIZING'
+        | 'PROMOTING'
       project_ref: string
       /** Format: date-time */
       review_requested_at?: string
@@ -4053,6 +4055,7 @@ export interface components {
           | 'RESTARTING'
           | 'PAUSE_FAILED'
           | 'RESIZING'
+          | 'PROMOTING'
       }[]
     }
     OrganizationResponseV1_Output: {
@@ -4249,6 +4252,14 @@ export interface components {
             type: 'active_replication_slot'
           }
         | {
+            column_name: string
+            schema_name: string
+            table_name: string
+            /** @enum {string} */
+            type: 'table_using_reg_type'
+            type_name: string
+          }
+        | {
             /** @enum {string} */
             type: 'x86_architecture'
           }
@@ -4273,6 +4284,10 @@ export interface components {
         | {
             /** @enum {string} */
             type: 'btree_gist_nan_reindex'
+          }
+        | {
+            /** @enum {string} */
+            type: 'collation_reindex_required'
           }
       )[]
     }
@@ -5767,6 +5782,7 @@ export interface components {
         | 'RESTARTING'
         | 'PAUSE_FAILED'
         | 'RESIZING'
+        | 'PROMOTING'
     }
     V1ProjectWithDatabaseResponse_Output: {
       /** @description Creation timestamp */
@@ -5822,6 +5838,7 @@ export interface components {
         | 'RESTARTING'
         | 'PAUSE_FAILED'
         | 'RESIZING'
+        | 'PROMOTING'
     }
     /** @example {
      *       "query": "select * from pg_stat_activity limit 1;"
@@ -6721,6 +6738,13 @@ export interface operations {
       }
       /** @description Forbidden action */
       403: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description User not found */
+      404: {
         headers: {
           [name: string]: unknown
         }
