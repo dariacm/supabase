@@ -38,7 +38,8 @@ export const useReducedMotion = (): boolean => {
 }
 
 export function ensurePlatformSuffix(apiUrl: string) {
-  return apiUrl.endsWith('/platform') ? apiUrl : `${apiUrl}/platform`
+  const base = apiUrl.replace(/\/+$/, '')
+  return base.endsWith('/platform') ? base : `${base}/platform`
 }
 
 export function mergeRefs<T>(...refs: React.Ref<T>[]): React.RefCallback<T> {
