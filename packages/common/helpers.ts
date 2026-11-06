@@ -38,7 +38,8 @@ export const useReducedMotion = (): boolean => {
 }
 
 export function ensurePlatformSuffix(apiUrl: string) {
-  const base = apiUrl.replace(/\/+$/, '')
+  let base = apiUrl
+  while (base.endsWith('/')) base = base.slice(0, -1)
   return base.endsWith('/platform') ? base : `${base}/platform`
 }
 
