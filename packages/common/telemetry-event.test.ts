@@ -86,6 +86,8 @@ describe('buildTelemetryEventRequest', () => {
       'https://api.example.com/',
       'https://api.example.com/platform',
       'https://api.example.com/platform/',
+      'https://api.example.com//',
+      'https://api.example.com/platform//',
     ]) {
       expect(buildTelemetryEventRequest(apiUrl, event)?.url).toBe(
         'https://api.example.com/platform/telemetry/event'
